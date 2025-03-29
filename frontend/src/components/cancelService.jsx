@@ -4,7 +4,7 @@ import {useState} from 'react';
 // This is a React component called FetchCourses. Notice that a click event handler is being sent
 // into the component as a prop(erty). It is 'deconstructed' so that we can refer to the prop by
 // its name directly.
-const NewGame = ({clickHandler}) => {
+const CancelGame = ({clickHandler}) => {
 
     // A React state hook called 'courses' is initialized to be an empty array. 'setCourses' is the 
     // method that must be used to update 'courses'.
@@ -20,12 +20,10 @@ const NewGame = ({clickHandler}) => {
                 // The following is only executed if the Get Courses button is activated. It's the interface to
                 // our API.
                 const requestBody = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({grid: ['x', 'y'], fleet: [[1,1], [2,2], [1,1], [1,1]]})
+                    method: 'GET',
                 }
 
-                const response = fetch('http://localhost:3000/battleship/new', requestBody)
+                const response = fetch('http://localhost:3000/battleship/cancel', requestBody)
                 response.then ((result)=> {
                     return result.json();
                 }).then ((data) => {
@@ -37,7 +35,7 @@ const NewGame = ({clickHandler}) => {
                 })}
                 
             
-        }>New Game</button><br/>
+        }>Cancel Game</button><br/>
         {   // Here we generate the jsx for each element in the array contained in the courses state hook.
             // We perform a map over that array so that each course can be used to create a button element.
             
@@ -46,4 +44,4 @@ const NewGame = ({clickHandler}) => {
 };
 
 // The component is exported so that other JS files can use it.
-export {NewGame as default};
+export {CancelGame as default};

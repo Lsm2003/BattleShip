@@ -22,10 +22,10 @@ const NewGame = ({clickHandler}) => {
                 const requestBody = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({grid: ['x', 'y'], fleet: [[1,1], [2,2], [1,1], [1,1]]})
+                    body: JSON.stringify({grid: ['x', 'y']})
                 }
 
-                const response = fetch('http://localhost:3000/battleship/new', requestBody)
+                const response = fetch('http://localhost:3000/battleship/lob', requestBody)
                 response.then ((result)=> {
                     return result.json();
                 }).then ((data) => {
@@ -33,11 +33,11 @@ const NewGame = ({clickHandler}) => {
                     if (res.length < 1) {
                         setRes(prevRes => [...prevRes, items]);
                     }
-                    document.getElementById("responseDiv").textContent = items.message;
+                    document.getElementById("responseDiv").textContent = items.status;
                 })}
                 
             
-        }>New Game</button><br/>
+        }>Lob</button><br/>
         {   // Here we generate the jsx for each element in the array contained in the courses state hook.
             // We perform a map over that array so that each course can be used to create a button element.
             
