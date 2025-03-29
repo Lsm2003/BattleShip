@@ -5,6 +5,7 @@ const {newGame} =
     require ("../controllers/new.controller.js");
 
 newRouter.get ('/', newGame);
+newRouter.post ('/', newGame);
 
 
 module.exports = newRouter;
