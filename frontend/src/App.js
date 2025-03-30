@@ -3,70 +3,63 @@ import NewGame from './components/newService';
 import CancelGame from './components/cancelService';
 import ConcedeGame from './components/concedeService';
 import Lob from './components/lobService';
+import { useState } from 'react';
 
 
-function App() { // here we go!
+function App() {
 
-	// This is the event handler that is common to all the buttons that we create.
-	// It could have been placed in the FetchCourses module, but I thought it would be
-	// cool to pass it as a prop to the component. It has no dependancies on either
-	// of the App or FetchCourses components, so it could have existed in it's own file.
-	// A separate file of event handlers might be a workable idea.
-	function handleNewClick (e) {
-		// Action taken when a course button is clicked.
-		// This is function is passed to the component as a prop
-		if (e.target.innerHTML === "CP4485"){ // if the button says 'CP4485'...
-			if (e.target.style.background === 'red')		// if the color is red, 
-				e.target.style.background = 'lightblue';	// then turn it blue,
-			else											// otherwise
-				e.target.style.background = 'red';			// make it red.
-		}
-	}
+	const myCarrierCoords = ['A1', 'A2', 'A3', 'A4', 'A5']
+	const myBattleshipCoords = ['B1', 'B2', 'B3', 'B4']
+	const myCruiserCoords = ['C1', 'C2', 'C3']
+	const mySubCoords = ['D1', 'D2', 'D3']
+	const myDestroyerCoords = ['E1', 'E2']
 
-	function handleCancelClick (e) {
-		// Action taken when a course button is clicked.
-		// This is function is passed to the component as a prop
-		if (e.target.innerHTML === "CP4485"){ // if the button says 'CP4485'...
-			if (e.target.style.background === 'red')		// if the color is red, 
-				e.target.style.background = 'lightblue';	// then turn it blue,
-			else											// otherwise
-				e.target.style.background = 'red';			// make it red.
-		}
-	}
+	const [coordinates, setCoordinates] = useState({ xCoordinate: '', yCoordinate: '' });
+	const { xCoordinate, yCoordinate } = coordinates;
 
-	function handleConcedeClick (e) {
-		// Action taken when a course button is clicked.
-		// This is function is passed to the component as a prop
-		if (e.target.innerHTML === "CP4485"){ // if the button says 'CP4485'...
-			if (e.target.style.background === 'red')		// if the color is red, 
-				e.target.style.background = 'lightblue';	// then turn it blue,
-			else											// otherwise
-				e.target.style.background = 'red';			// make it red.
-		}
-	}
 
-	function handleLobClick (e) {
-		// Action taken when a course button is clicked.
-		// This is function is passed to the component as a prop
-		if (e.target.innerHTML === "CP4485"){ // if the button says 'CP4485'...
-			if (e.target.style.background === 'red')		// if the color is red, 
-				e.target.style.background = 'lightblue';	// then turn it blue,
-			else											// otherwise
-				e.target.style.background = 'red';			// make it red.
-		}
-	}
-
-	// Our app just creates a FetchCourse Component, indicating the event handler for any
-	// resulting buttons.
 	return (
 		<div className="App">
-			<div class="buttons">
-				<NewGame clickHandler={handleNewClick}/>
-				<CancelGame clickHandler={handleCancelClick}/>
-				<ConcedeGame clickHandler={handleConcedeClick}/>
-				<Lob clickHandler={handleLobClick}/>
+			<div className="buttons">
+				<NewGame />
+				<CancelGame />
+				<ConcedeGame />
+				<Lob
+					xCoordinate={xCoordinate}
+					yCoordinate={yCoordinate}
+					onFire={() => {
+						const x = document.getElementById('xCoordinateInput').value;
+						const y = document.getElementById('yCoordinateInput').value;
+						setCoordinates({ xCoordinate: x, yCoordinate: y });
+					}}
+				/>
 			</div>
 			<div id="responseDiv"></div>
+
+			<div id="lobDiv">
+				<h2>Lob</h2>
+				<label>
+					X Coordinate: 
+					<input
+						type="text"
+						id="xCoordinateInput"
+						value={xCoordinate}
+						onChange={(e) => setCoordinates({ ...coordinates, xCoordinate: e.target.value })}
+					/>
+					<br></br>
+				</label>
+				<br />
+				<label>
+					Y Coordinate: 
+				<input
+						type="text"
+						id="yCoordinateInput"
+						value={yCoordinate}
+						onChange={(e) => setCoordinates({ ...coordinates, yCoordinate: e.target.value })}
+						required
+					/>
+				</label>
+			</div>
 		</div>
 	);
 }
