@@ -3,6 +3,7 @@ import NewGame from './components/newService';
 import CancelGame from './components/cancelService';
 import ConcedeGame from './components/concedeService';
 import Lob from './components/lobService';
+import Status from './components/statusService';
 import { useState } from 'react';
 
 
@@ -33,6 +34,7 @@ function App() {
 						setCoordinates({ xCoordinate: x, yCoordinate: y });
 					}}
 				/>
+				<Status />
 			</div>
 			<div id="responseDiv"></div>
 
@@ -59,6 +61,10 @@ function App() {
 						required
 					/>
 				</label>
+			</div>
+			<div id="statusDiv">
+				<h2>Status</h2>
+				
 			</div>
 		</div>
 	);

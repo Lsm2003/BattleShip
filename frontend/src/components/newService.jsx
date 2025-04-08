@@ -16,17 +16,24 @@ const NewGame = ({clickHandler}) => {
                 }
 
                 const response = fetch('http://localhost:3000/battleship/new', requestBody)
-                response.then ((result)=> {
+                response.then((result) => {
+                    if (result.status == 500) {
+                        console.log("Game already in progress");
+                        document.getElementById("responseDiv").textContent = "Game already in progress";
+                        return; // Stop further execution
+                    }
                     return result.json();
-                }).then ((data) => {
+                }).then((data) => {
+                    if (!data) return; // Prevent further execution if no data
                     const items = data;
                     if (res.length < 1) {
                         setRes(prevRes => [...prevRes, items]);
                     }
                     document.getElementById("responseDiv").textContent = items.message;
-                })}
-                
-            
+                }).catch((error) => {
+                    console.error("Error:", error);
+                });
+            }
         }>New Game</button><br/>
         {  
      

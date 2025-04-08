@@ -29,9 +29,15 @@ const Lob = ({ xCoordinate, yCoordinate }) => {
                 const response = fetch('http://localhost:3000/battleship/lob', requestBody)
 
                 response.then ((result)=> {
+                    if (result.status == 500) {
+                        console.log("Game not started");
+                        document.getElementById("responseDiv").textContent = "Game not started";
+                        return; // Stop further execution
+                    }
                     return result.json();
 
                 }).then ((data) => {
+                    if (!data) return; // Prevent further execution if no data
                     const items = data;
 
                     if (res.length < 1) {
