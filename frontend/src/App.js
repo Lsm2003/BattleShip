@@ -37,6 +37,7 @@ function App() {
 				<Status />
 			</div>
 			<div id="responseDiv"></div>
+			<div id="serverGuess"></div>
 
 			<div id="lobDiv">
 				<h2>Lob</h2>

@@ -59,6 +59,7 @@ const Lob = ({ xCoordinate, yCoordinate }) => {
                             } else {
                                 const response = fetch('http://localhost:3000/battleship/hit')
                                 console.log("CORDS: ", allCoords)
+                                document.getElementById("serverGuess").textContent = `Server Guess: ${hostGuess} (hit)`;
                             }
             
                             hit = true;
@@ -69,6 +70,7 @@ const Lob = ({ xCoordinate, yCoordinate }) => {
                     }
                     if (!hit) {
                         const response = fetch('http://localhost:3000/battleship/miss')
+                        document.getElementById("serverGuess").textContent = `Server Guess: ${hostGuess} (miss)`;
                     }
 
 
