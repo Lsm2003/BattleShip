@@ -1,12 +1,16 @@
 const { hostCarrierCoords, hostBattleshipCoords, hostCruiserCoords, hostSubCoords, hostDestroyerCoords } = require('../coordinates.js');
 const { getGameStatus } = require('./new.controller.js');
 
+let cycle = 0;
+
 const lob = async (req, res) => {
 
     const gameStatus = await getGameStatus();
     if (gameStatus !== "In Progress") {
         return res.status(500).json({ status: "reject", time: 'TIMESTAMPHERE' });
     }
+
+    cycle += 1;
 
     let grid = req.body.grid;
     let guess = grid[0] + grid[1];
@@ -67,6 +71,9 @@ const lob = async (req, res) => {
     }
 };
 
+const getCycle = () => cycle;
+
 module.exports = {
-    lob
+    lob,
+    getCycle
 };

@@ -18,11 +18,9 @@ const Status = ({clickHandler}) => {
                     return result.json();
                 }).then ((data) => {
                     const items = data;
-                    // if (res.length < 1) {
-                    //     setRes(prevRes => [...prevRes, items]);
-                    // }
-                    // document.getElementById("responseDiv").textContent = items.message;
                     console.log("Status Response:", items);
+                    let statusString = `Status: ${items.status} | Cycle: ${items.cycle} | Duration: ${items.duration} | My Fleet: ${items.myfleet} | Your Fleet: ${items.yourfleet} | Time: ${items.time}`;
+                    document.getElementById("responseDiv").textContent = statusString;
                 })}
                 
             
