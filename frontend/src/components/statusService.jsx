@@ -20,7 +20,7 @@ const Status = ({clickHandler}) => {
                     const items = data;
                     console.log("Status Response:", items);
                     let statusString = `Status: ${items.status} | Cycle: ${items.cycle} | Duration: ${items.duration} | My Fleet: ${items.myfleet} | Your Fleet: ${items.yourfleet} | Time: ${items.time}`;
-                    document.getElementById("responseDiv").textContent = statusString;
+                    document.getElementById("statusResponse").textContent = statusString;
                 })}
                 
             
